@@ -1,4 +1,6 @@
-# simple-status-api
+# Simple Status API
+
+API for Simple Status Page.
 
 ## Requirements
 
@@ -7,7 +9,7 @@ Python 3.6+
 ## Installation
 
 ```bash
-pip install fastapi "uvicorn[standard]"
+pip install -r requirements.txt
 ```
 
 ## Running
