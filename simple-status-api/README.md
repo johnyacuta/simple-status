@@ -13,6 +13,5 @@ pip install fastapi "uvicorn[standard]"
 ## Running
 
 ```bash
-cd app
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
