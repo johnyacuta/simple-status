@@ -5,23 +5,32 @@ import requests
 
 app = FastAPI()
 
+default_service = [
+    { 
+        "name": "Simple Status",
+        "url": "http://localhost:8000/healthz",
+        "category": "API",
+        "description": "A simple status page."
+    }
+]
+
 
 # The base class for a service
 class Service(BaseModel):
-    name: str = Field(...)
-    url: str = Field(...)
-    category: str = Field(...)
+    name: str
+    url: str
+    category: str
     description: str = Optional[None]
 
 
 # The derived class for a service and its status
 class ServiceStatus(Service):
-    status: int = Field(...)
+    status: int
 
 
 # Get the status for services
 @app.post("/status")
-def status(services: List[Service]):
+def status(services: List[Service] = default_service):
     try:
         services_statuses = []
         for s in services:
