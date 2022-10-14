@@ -35,7 +35,7 @@ def status(services: List[Service] = default_service):
     try:
         services_statuses = []
         for s in services:
-            print("INFO      Service:", s)
+            print("INFO      Requested service:", s)
             r = requests.get(s.url)
             service_status = ServiceStatus(
                 name=s.name,
@@ -44,7 +44,7 @@ def status(services: List[Service] = default_service):
                 description=s.description,
                 status=r.status_code
             )
-            print("INFO      Service Status:", service_status)
+            print("INFO      Service info:", service_status)
             services_statuses.append(service_status)
         return {"Services": services_statuses}
 
