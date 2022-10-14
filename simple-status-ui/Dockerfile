@@ -1,4 +1,4 @@
-# Bundle assets with nginx
+# Bundle assets with node
 FROM node:16-alpine AS builder
 ENV NODE_ENV production
 
