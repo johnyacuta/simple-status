@@ -12,7 +12,7 @@ The Simple Status Page API allows users to request services information based on
 
 The Simple Status Page UI allows users to easily see the requested services information.
 
-Documentation: TBD
+[Documentation](https://github.com/johnyacuta/simple-status/tree/main/simple-status-ui)
 
 ## License
 
