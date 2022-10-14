@@ -20,13 +20,13 @@ uvicorn app.main:app --reload
 
 ## Docker
 
-Build the app’s container image
+Build the app’s container image:
 
 ```bash
 docker build -t simple-status-api .
 ```
 
-Start an app container
+Start the app container:
 
 ```bash
 docker run -dp 8000:8000 simple-status-api
@@ -64,4 +64,4 @@ INFO      Service info: name='Simple Status' url='http://localhost:8000/healthz'
 INFO:     127.0.0.1:50597 - "POST /status HTTP/1.1" 200 OK
 ```
 
-Alternative: you can also navigate to `http://127.0.0.1:8000/docs` and ecxecute commands there.
+Alternatively, you can also navigate to `http://127.0.0.1:8000/docs` and ecxecute commands there.
