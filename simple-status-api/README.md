@@ -18,6 +18,20 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
+## Docker
+
+Build the app’s container image
+
+```bash
+docker build -t simple-status-api .
+```
+
+Start an app container
+
+```bash
+docker run -dp 8000:8000 simple-status-api
+```
+
 ## Documenation
 
 Go to `http://127.0.0.1:8000/docs`. You will see the automatic interactive API documentation (provided by Swagger UI).
