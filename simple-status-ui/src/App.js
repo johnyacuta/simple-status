@@ -54,6 +54,17 @@ class App extends React.Component {
       return (
         <div className = "App">
           <h1>Fetched data from an api in react</h1>
+          {
+            results['Services'].map((item) => (
+              <ol key = 'Services'>
+                <li>Service Name: {item.name}</li>
+                <li>Service Response Status Code: {item.status}</li>
+                <li>Service URL: {item.url}</li>
+                <li>Service Category: {item.category}</li>
+                <li>Service Description: {item.description}</li>
+              </ol>
+            ))
+          }
         </div>
       )
     }
