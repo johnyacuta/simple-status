@@ -1,11 +1,27 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional, List
+from fastapi.middleware.cors import CORSMiddleware
 import requests
 
 app = FastAPI()
 
+# Add origins to allow requests
+origins = [
+    "http://localhost",
+    "http://localhost:3000"
+]
 
+# Configure CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+# Default request body
 default_service = [
     { 
         "name": "Simple Status",
