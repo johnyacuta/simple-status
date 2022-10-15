@@ -13,16 +13,11 @@ class App extends React.Component {
 
   componentDidMount() {
     fetch('http://localhost:8000/healthz', {
-        method: 'GET',
-        // mode: 'no-cors'
-        header: {
-          'Access-Control-Allow-Origin': 'http://localhost:8000'
-        }
+        method: 'GET'
       }
     ) // TODO: make the url into an env var
     .then((res) => res.json())
     .then((json) => {
-      console.log(json);
       this.setState({
         results: json,
         dataIsLoaded: true
@@ -40,7 +35,6 @@ class App extends React.Component {
         </div>
       )
     } else {
-      console.log(results)
       return (
         <div>
           <h1>Fetched data from an api in react</h1>
@@ -49,12 +43,5 @@ class App extends React.Component {
     }
   }
 }
-
-// function App() {
-//   return (
-//     <div className="App">
-//     </div>
-//   );
-// }
 
 export default App;
