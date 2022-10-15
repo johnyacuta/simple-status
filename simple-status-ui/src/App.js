@@ -52,7 +52,7 @@ class App extends React.Component {
     } else {
       console.log(results); // Print
       return (
-        <div>
+        <div className = "App">
           <h1>Fetched data from an api in react</h1>
         </div>
       )
