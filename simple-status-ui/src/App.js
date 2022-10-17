@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
 import Accordion from 'react-bootstrap/Accordion';
+import Badge from 'react-bootstrap/Badge';
 import './App.css';
 
 class App extends React.Component {
@@ -79,7 +80,9 @@ class App extends React.Component {
             <Row className="justify-content-md-center">
               <Accordion alwaysOpen>
                 <Accordion.Item eventKey="0">
-                  <Accordion.Header>Accordion Item #1</Accordion.Header>
+                  <Accordion.Header>
+                    Accordion Item #1: <Badge bg="success">Success</Badge>
+                  </Accordion.Header>
                   <Accordion.Body>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -91,7 +94,9 @@ class App extends React.Component {
                   </Accordion.Body>
                 </Accordion.Item>
                 <Accordion.Item eventKey="1">
-                  <Accordion.Header>Accordion Item #2</Accordion.Header>
+                  <Accordion.Header>
+                    Accordion Item #2: <Badge bg="danger">Danger</Badge>
+                  </Accordion.Header>
                   <Accordion.Body>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
