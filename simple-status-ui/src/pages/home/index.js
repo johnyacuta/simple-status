@@ -6,6 +6,25 @@ import Accordion from 'react-bootstrap/Accordion';
 import Badge from 'react-bootstrap/Badge';
 import axios from 'axios';
 
+function SystemStatus(results) {
+  var systemsOperational = true;
+  for(let r of results['results']['Services']) {
+    if(r.status !== 200) {
+      systemsOperational = false;
+      break;
+    }
+  }
+
+  return systemsOperational === true ?
+    <Alert variant="success">
+      <Alert.Heading>All Systems Operational</Alert.Heading>
+    </Alert>
+    :
+    <Alert variant="danger">
+      <Alert.Heading>System Failure</Alert.Heading>
+    </Alert>;
+}
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -62,12 +81,7 @@ class Home extends Component {
             <h1 style={{marginTop: 50, marginBottom: 50, width: '25rem'}}>Simple Status Page</h1>
           </Row>
           <Row>
-            <Alert variant="success">
-              <Alert.Heading>All Systems Operational</Alert.Heading>
-            </Alert>
-            <Alert variant="danger">
-              <Alert.Heading>System Failure</Alert.Heading>
-            </Alert>
+            <SystemStatus results={results} />
           </Row>
           <hr />
           <Row>
@@ -79,7 +93,7 @@ class Home extends Component {
                       {item.name}: { item.status === 200 ? <Badge bg="success">Success</Badge> : <Badge bg="danger">Failure</Badge> }
                     </Accordion.Header>
                     <Accordion.Body>
-                      <div title='content' class="text-left">
+                      <div title='content'>
                         <ul key='Services'>
                           <li>Name: {item.name}</li>
                           <li>Response Status Code: {item.status}</li>
