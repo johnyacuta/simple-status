@@ -1,29 +1,10 @@
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Alert from 'react-bootstrap/Alert';
 import Accordion from 'react-bootstrap/Accordion';
 import Badge from 'react-bootstrap/Badge';
+import SystemStatus from '../../components/system-status';
 import axios from 'axios';
-
-function SystemStatus(results) {
-  var systemsOperational = true;
-  for(let r of results['results']['Services']) {
-    if(r.status !== 200) {
-      systemsOperational = false;
-      break;
-    }
-  }
-
-  return systemsOperational === true ?
-    <Alert variant="success">
-      <Alert.Heading>All Systems Operational</Alert.Heading>
-    </Alert>
-    :
-    <Alert variant="danger">
-      <Alert.Heading>System Failure</Alert.Heading>
-    </Alert>;
-}
 
 class Home extends Component {
   constructor(props) {
