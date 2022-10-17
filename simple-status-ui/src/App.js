@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Alert from 'react-bootstrap/Alert';
 import Accordion from 'react-bootstrap/Accordion';
 import './App.css';
 
@@ -66,6 +67,15 @@ class App extends React.Component {
             <Row className="justify-content-md-center">
               <h1 style={{marginTop: 50, marginBottom: 50, width: '25rem'}}>Simple Status Page</h1>
             </Row>
+            <Row className="justify-content-md-center">
+            <Alert variant="success">
+              <Alert.Heading>All Systems Operational</Alert.Heading>
+            </Alert>
+            <Alert variant="danger">
+              <Alert.Heading>System Failure</Alert.Heading>
+            </Alert>
+            </Row>
+            <hr />
             <Row className="justify-content-md-center">
               <Accordion alwaysOpen>
                 <Accordion.Item eventKey="0">
