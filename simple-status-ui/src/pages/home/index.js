@@ -69,9 +69,11 @@ class Home extends Component {
 
     if (!dataIsLoaded) {
       return (
-        <div>
-          <h1>Fetching data. Please wait...</h1>
-        </div>
+        <Container>
+          <Row className="justify-content-md-center">
+            <h1 style={{marginTop: 50, marginBottom: 50, width: '25rem'}}>Loading...</h1>
+          </Row>
+        </Container>
       )
     } else {
       // console.log(results); // Print

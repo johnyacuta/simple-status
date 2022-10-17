@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className = "App">
+    <div className="App" style={{backgroundColor: '#181818',  color: 'white', minHeight: '100vh', height: '100vh'}}>
       <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
