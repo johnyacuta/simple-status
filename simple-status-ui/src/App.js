@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Alert from 'react-bootstrap/Alert';
 import Accordion from 'react-bootstrap/Accordion';
 import Badge from 'react-bootstrap/Badge';
+import axios from 'axios';
 import './App.css';
 
 class App extends React.Component {
@@ -17,32 +18,20 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:8000/status', {
-        method: 'POST',
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(
-          [
-            {
-              "name": "Simple Status",
-              "url": "http://localhost:8000/healthz",
-              "category": "API",
-              "description": "A simple status page."
-            }
-          ]
-        )
+    const body = [
+      {
+        "name": "Simple Status",
+        "url": "http://localhost:8000/healthz",
+        "category": "API",
+        "description": "A simple status page."
       }
-    ) // TODO: make the url into an env var
-    .then((res) => res.json())
-    .then((json) => {
-      // console.log(json); // Print
-      this.setState({
-        results: json,
-        dataIsLoaded: true
-      })
-    })
+    ];
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    axios.post('http://localhost:8000/status', body, { headers })
+      .then(response => this.setState({ results: response.data, dataIsLoaded: true }))
   }
 
   render() {
@@ -108,17 +97,17 @@ class App extends React.Component {
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
-              {/* {
+              {
                 results['Services'].map((item) => (
-                  // <ol key = 'Services'>
-                  //   <li>Service Name: {item.name}</li>
-                  //   <li>Service Response Status Code: {item.status}</li>
-                  //   <li>Service URL: {item.url}</li>
-                  //   <li>Service Category: {item.category}</li>
-                  //   <li>Service Description: {item.description}</li>
-                  // </ol>
+                  <ol key = 'Services'>
+                    <li>Service Name: {item.name}</li>
+                    <li>Service Response Status Code: {item.status}</li>
+                    <li>Service URL: {item.url}</li>
+                    <li>Service Category: {item.category}</li>
+                    <li>Service Description: {item.description}</li>
+                  </ol>
                 ))
-              } */}
+              }
             </Row>
           </Container>
         </div>
