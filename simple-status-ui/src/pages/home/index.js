@@ -19,7 +19,19 @@ class Home extends Component {
   componentDidMount() {
     const body = [
       {
-        "name": "Simple Status",
+        "name": "Simple Status 1",
+        "url": "http://localhost:8000/healthz",
+        "category": "API",
+        "description": "A simple status page."
+      },
+      {
+        "name": "Simple Status 2",
+        "url": "http://localhost:8000/healthz",
+        "category": "API",
+        "description": "A simple status page."
+      },
+      {
+        "name": "Simple Status 3",
         "url": "http://localhost:8000/healthz",
         "category": "API",
         "description": "A simple status page."
@@ -64,7 +76,7 @@ class Home extends Component {
                 results['Services'].map((item, index) => (
                   <Accordion.Item eventKey={index}>
                     <Accordion.Header>
-                      {item.name}: <Badge bg="success">Success</Badge>
+                      {item.name}: { item.status === 200 ? <Badge bg="success">Success</Badge> : <Badge bg="danger">Failure</Badge> }
                     </Accordion.Header>
                     <Accordion.Body>
                       <div title='content' class="text-left">
