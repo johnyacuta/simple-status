@@ -43,63 +43,44 @@ class Home extends Component {
         </div>
       )
     } else {
-      console.log(results); // Print
+      // console.log(results); // Print
       return ( // TODO: make the title into an env var
         <Container>
           <Row className="justify-content-md-center">
             <h1 style={{marginTop: 50, marginBottom: 50, width: '25rem'}}>Simple Status Page</h1>
           </Row>
-          <Row className="justify-content-md-center">
-          <Alert variant="success">
-            <Alert.Heading>All Systems Operational</Alert.Heading>
-          </Alert>
-          <Alert variant="danger">
-            <Alert.Heading>System Failure</Alert.Heading>
-          </Alert>
+          <Row>
+            <Alert variant="success">
+              <Alert.Heading>All Systems Operational</Alert.Heading>
+            </Alert>
+            <Alert variant="danger">
+              <Alert.Heading>System Failure</Alert.Heading>
+            </Alert>
           </Row>
           <hr />
-          <Row className="justify-content-md-center">
+          <Row>
             <Accordion alwaysOpen>
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>
-                  Accordion Item #1: <Badge bg="success">Success</Badge>
-                </Accordion.Header>
-                <Accordion.Body>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                  minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in
-                  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum.
-                </Accordion.Body>
-              </Accordion.Item>
-              <Accordion.Item eventKey="1">
-                <Accordion.Header>
-                  Accordion Item #2: <Badge bg="danger">Danger</Badge>
-                </Accordion.Header>
-                <Accordion.Body>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                  minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in
-                  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum.
-                </Accordion.Body>
-              </Accordion.Item>
+              {
+                results['Services'].map((item, index) => (
+                  <Accordion.Item eventKey={index}>
+                    <Accordion.Header>
+                      {item.name}: <Badge bg="success">Success</Badge>
+                    </Accordion.Header>
+                    <Accordion.Body>
+                      <div title='content' class="text-left">
+                        <ul key='Services'>
+                          <li>Name: {item.name}</li>
+                          <li>Response Status Code: {item.status}</li>
+                          <li>URL: {item.url}</li>
+                          <li>Category: {item.category}</li>
+                          <li>Description: {item.description}</li>
+                        </ul>
+                      </div>
+                    </Accordion.Body>
+                  </Accordion.Item>
+                ))
+              }
             </Accordion>
-            {
-              results['Services'].map((item) => (
-                <ol key = 'Services'>
-                  <li>Service Name: {item.name}</li>
-                  <li>Service Response Status Code: {item.status}</li>
-                  <li>Service URL: {item.url}</li>
-                  <li>Service Category: {item.category}</li>
-                  <li>Service Description: {item.description}</li>
-                </ol>
-              ))
-            }
           </Row>
         </Container>
       )
