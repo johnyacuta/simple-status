@@ -1,4 +1,6 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import './App.css';
 
 class App extends React.Component {
@@ -51,20 +53,32 @@ class App extends React.Component {
       )
     } else {
       console.log(results); // Print
-      return (
+      return ( // TODO: make the title into an env var
         <div className = "App">
-          <h1>Fetched data from an api in react</h1>
-          {
-            results['Services'].map((item) => (
-              <ol key = 'Services'>
-                <li>Service Name: {item.name}</li>
-                <li>Service Response Status Code: {item.status}</li>
-                <li>Service URL: {item.url}</li>
-                <li>Service Category: {item.category}</li>
-                <li>Service Description: {item.description}</li>
-              </ol>
-            ))
-          }
+          <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossOrigin="anonymous"
+          />
+          <Container>
+            <Row className="justify-content-md-center" >
+              <h1 style={{marginTop: 50, marginBottom: 50, width: '25rem'}}>Simple Status Page</h1>
+            </Row>
+            <Row>
+              {
+                results['Services'].map((item) => (
+                  <ol key = 'Services'>
+                    <li>Service Name: {item.name}</li>
+                    <li>Service Response Status Code: {item.status}</li>
+                    <li>Service URL: {item.url}</li>
+                    <li>Service Category: {item.category}</li>
+                    <li>Service Description: {item.description}</li>
+                  </ol>
+                ))
+              }
+            </Row>
+          </Container>
         </div>
       )
     }
