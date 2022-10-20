@@ -4,12 +4,15 @@ from typing import Optional, List
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 
+API_ENDPOINT = 'http://localhost:8000'
+UI_ENDPOINT = 'http://localhost:3000'
+
 app = FastAPI()
 
 # Add origins to allow requests
 origins = [
     "http://localhost",
-    "http://localhost:3000"
+    f"{UI_ENDPOINT}"
 ]
 
 # Configure CORS middleware
@@ -25,7 +28,7 @@ app.add_middleware(
 default_service = [
     { 
         "name": "Simple Status",
-        "url": "http://localhost:8000/healthz",
+        "url": f"{API_ENDPOINT}/healthz",
         "category": "API",
         "description": "A simple status page."
     }
