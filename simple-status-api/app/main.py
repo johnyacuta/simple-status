@@ -2,35 +2,28 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional, List
 from fastapi.middleware.cors import CORSMiddleware
+from .config import settings, default_service
 import requests
-
-API_ENDPOINT = 'http://localhost:8000'
-UI_ENDPOINT = 'http://localhost:3000'
 
 app = FastAPI()
 
-# Add origins to allow requests
-origins = [
-    "http://localhost",
-    f"{UI_ENDPOINT}"
-]
 
 # Configure CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[f"{settings.UI_ENDPOINT}"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
 )
 
 # Default request body
-default_service = [
+default_services = [
     { 
-        "name": "Simple Status",
-        "url": f"{API_ENDPOINT}/healthz",
-        "category": "API",
-        "description": "A simple status page."
+        "name": default_service.name,
+        "url": default_service.url,
+        "category": default_service.category,
+        "description": default_service.description
     }
 ]
 
@@ -50,7 +43,7 @@ class ServiceStatus(Service):
 
 # Get the status for services
 @app.post("/status")
-def status(services: List[Service] = default_service):
+def status(services: List[Service] = default_services):
     try:
         services_statuses = []
         for s in services:
