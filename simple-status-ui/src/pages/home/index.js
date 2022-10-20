@@ -6,6 +6,8 @@ import Badge from 'react-bootstrap/Badge';
 import SystemStatus from '../../components/system-status';
 import axios from 'axios';
 
+const API_ENDPOINT = 'http://localhost:8000';
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -20,19 +22,19 @@ class Home extends Component {
     const body = [
       {
         "name": "Simple Status 1",
-        "url": "http://localhost:8000/healthz",
+        "url": `${API_ENDPOINT}/healthz`,
         "category": "API",
         "description": "A simple status page."
       },
       {
         "name": "Simple Status 2",
-        "url": "http://localhost:8000/healthz",
+        "url": `${API_ENDPOINT}/healthz`,
         "category": "API",
         "description": "A simple status page."
       },
       {
         "name": "Simple Status 3",
-        "url": "http://localhost:8000/healthz",
+        "url": `${API_ENDPOINT}/healthz`,
         "category": "API",
         "description": "A simple status page."
       }
@@ -41,7 +43,7 @@ class Home extends Component {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     };
-    axios.post('http://localhost:8000/status', body, { headers })
+    axios.post(`${API_ENDPOINT}/status`, body, { headers })
       .then(response => this.setState({ results: response.data, dataIsLoaded: true }))
   }
 
@@ -57,8 +59,7 @@ class Home extends Component {
         </Container>
       )
     } else {
-      // console.log(results); // Print
-      return ( // TODO: make the title into an env var
+      return ( // TODO: make the title into an env var or as part of a settings.yaml in the api
         <Container>
           <Row className="justify-content-md-center">
             <h1 style={{marginTop: 50, marginBottom: 50, width: '25rem'}}>Simple Status Page</h1>
@@ -73,7 +74,10 @@ class Home extends Component {
                 results['Services'].map((item, index) => (
                   <Accordion.Item eventKey={index}>
                     <Accordion.Header>
-                      {item.name}: { item.status === 200 ? <Badge bg="success">Success</Badge> : <Badge bg="danger">Failure</Badge> }
+                      {item.name}: {
+                        item.status === 200 ? <Badge bg="success">Success</Badge> :
+                          <Badge bg="danger">Failure</Badge>
+                      }
                     </Accordion.Header>
                     <Accordion.Body>
                       <div title='content'>
