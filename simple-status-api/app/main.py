@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
 from .config import settings, default_service
 import requests
@@ -30,7 +30,7 @@ class Service(BaseModel):
 class ServiceStatus(Service):
     status: int
 
-
+# TODO: Place this in a location like app/internal/get_services.py
 def get_services():
     try:
         # TODO: Call the K8s API to get requested services
@@ -54,6 +54,7 @@ def get_services():
             ]
 
 
+# TODO: Place this in a location like app/routers/status.py
 # Get the status for services
 @app.get("/status")
 def status():
@@ -76,7 +77,7 @@ def status():
         return {"Services": services_statuses}
 
     except:
-        raise HTTPException(status_code=404, detail="Not found")
+        raise HTTPException(status_code=404, message="A service or services not found")
 
 
 # Health check
