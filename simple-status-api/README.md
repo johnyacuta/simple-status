@@ -41,21 +41,17 @@ Go to `http://127.0.0.1:8000/docs`. You will see the automatic interactive API d
 Run the server and then open a terminal and copy and paste the below command to test the API.
 
 ```bash
-curl -X 'POST' \
-  'http://127.0.0.1:8000/status' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: application/json' \
-  -d '[
-  {
-    "name": "Simple Status",
-    "url": "http://localhost:8000/healthz",
-    "category": "API",
-    "description": "A simple status page."
-  }
-]'
+curl http://localhost:8000/status
 ```
 
-Expected output:
+Console output:
+
+```bash
+$ curl http://localhost:8000/status 
+{"Services":[{"name":"Simple Status","url":"http://localhost:8000/healthz","category":"API","status":200}]
+```
+
+API logs output:
 
 ```bash
 INFO      Requested service: name='Simple Status' url='http://localhost:8000/healthz' category='API'
