@@ -36,6 +36,8 @@ spec:
                     required:
                       - name
                       - url
+                      - category
+                      - description
   # either Namespaced or Cluster
   scope: Namespaced
   names:

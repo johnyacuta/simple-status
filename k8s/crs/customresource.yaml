@@ -1,0 +1,11 @@
+# Custom Resource example using SimpleStatusItem CRD
+apiVersion: "simplestatus.com/v1"
+kind: SimpleStatusItem
+metadata:
+  name: my-services
+spec:
+  services:
+    - name: Simple Status
+      url: http://localhost:8000/healthz
+      category: API
+      description: A simple status page.
